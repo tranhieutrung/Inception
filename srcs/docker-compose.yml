@@ -1,0 +1,60 @@
+services:
+  mariadb:
+    build: requirements/mariadb/.
+    container_name: mariadb
+    env_file:
+      - .env
+    image: mariadb:hitran
+    networks:
+      - inception
+    restart: always
+    volumes:
+      - mysql:/var/lib/mysql
+
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
+    depends_on:
+      - wordpress
+      - mariadb
+    env_file:
+      - .env
+    image: nginx:hitran
+    networks:
+      - inception
+    restart: always
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress:/var/www/html
+
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    image: wordpress:hitran
+    networks:
+      - inception
+    restart: always
+    volumes:
+      - wordpress:/var/www/html
+
+networks:
+  inception:
+    driver: bridge
+volumes:
+  mysql:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/hitran/data/mysql
+      o: bind
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/hitran/data/wordpress
+      o: bind
