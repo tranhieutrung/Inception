@@ -18,13 +18,14 @@ if [ ! -e .firstmount ]; then
 			--dbpass="$MYSQL_PASSWORD" \
 			--dbhost="$MYSQL_HOST" 
 		./wp-cli.phar core install --allow-root \
+			--skip-email \
 			--url="$WP_URL" \
 			--title="$WP_TITLE" \
 			--admin_user="$WP_ADMIN" \
 			--admin_password="$WP_ADMIN_PASSWORD" \
 			--admin_email="$WP_ADMIN_EMAIL"
 		./wp-cli.phar user create --allow-root $WP_USER $WP_USER_EMAIL --role=$WP_USER_ROLE --user_pass=$WP_USER_PASSWORD
-		sed -i "/\/\* That's all, stop editing! Happy publishing. \*\//i define('WP_HOME', 'https://hitran.42.fr');\ndefine('WP_SITEURL', 'https://hitran.42.fr');" wp-config.php
+
 	else
 		echo "Wordpress is already installed."
 	fi
