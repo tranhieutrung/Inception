@@ -34,15 +34,9 @@ WHERE [condition]
 - Example:
 ```mariadb
 SHOW DATABASES;
-USE [database_name];
+USE wp_db;
 SHOW TABLES;
-DESCRIBE [table_name];
-SHOW COLUMNS FROM [table_name];
-SELECT * FROM [table_name] LIMIT 5;
-
-UPDATE [table_name]
-SET [colume_name] = [new_value]
-WHERE [condition]
+DESCRIBE wp_users;
 ```
 
 ![Mariadb commands](https://github.com/tranhieutrung/Inception/blob/main/images/mariadb_cm1.png)
