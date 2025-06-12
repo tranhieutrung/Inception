@@ -1,12 +1,12 @@
 FROM alpine:3.22.0
 
-RUN apk update && apk add \
-	nginx gettext openssl bash
+RUN apk update && \
+	apk add --no-cache nginx gettext openssl bash && \
+	mkdir -p /etc/nginx/ssl
 
 COPY conf/default.conf /etc/nginx/http.d/default.conf
 COPY tools/entrypoint.sh /usr/local/bin/
 
-RUN chmod +x /usr/local/bin/entrypoint.sh && \
-	mkdir -p /etc/nginx/ssl
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
