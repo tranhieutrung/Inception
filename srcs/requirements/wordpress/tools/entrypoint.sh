@@ -3,9 +3,6 @@ set -e
 
 cd /var/www/html
 
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-
 if [ ! -e .firstmount ]; then
 	# Wait for MariaDB to be ready
 	mariadb-admin ping --protocol=tcp --host=mariadb -u$MYSQL_USER -p$MYSQL_PASSWORD --wait >/dev/null 2>/dev/null

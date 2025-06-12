@@ -22,6 +22,9 @@ RUN if ! getent group www-data; then addgroup -S www-data; fi && \
 
 WORKDIR /var/www/html
 
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+
 COPY conf/www.conf /etc/php83/php-fpm.d/
 COPY tools/entrypoint.sh /usr/local/bin/
 
