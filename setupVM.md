@@ -13,7 +13,7 @@
 	- Finish
 - Configure the VM: Select VM -> Settings
 	- Storage -> controller: IDE -> optical drive -> Disk icon -> ISO image.
-	- Network -> Adapter 1 -> Advanced -> Port Forwarding -> Adds new port: Host and Guest port: 2242
+	- Network -> Adapter 1 -> Advanced -> Port Forwarding -> Adds new port: Host and Guest port: 2442 (or your choice)
 - Start the VM
 
 # 3. Setup the VM
@@ -32,28 +32,87 @@ apk add syslinux
 - Before reboot the VM, open Virtualbox, select the VM -> Settings -> remove ISO image. Then reboot the VM.
 - View Os version: cat /etc/os-release
 
-## Install services VM
+## Install services VM:
+### apk minors
 ```ash
 su
-apt install sudo
-sudo apt-get upgrade
-sudo apt install openssh-server
+vi /etc/apk/repositories
 ```
+
+- Edit repositories: uncomment community links
+
+### sudo
+```ash
+su
+apk update
+apk upgrade
+apk add sudo
+sudo visudo
+```
+- Edit visido: find and uncomment this line: %sudo	ALL=(ALL:ALL) ALL
+```ash
+su
+getent group sudo
+addgroup sudo
+adduser hitran sudo
+```
+
+### ssh
+```ash
+su
+apk add openssh-server
+vi /etc/ssh/sshd_config
+```
+- Edit sshd_config file: find, uncomment and change:
+	+ #Port 22 -> Port 2442
+	+ #PermitRootLogin -> PermitRootLogin no
+
+```ash
+sudo rc-service sshd restart
+```
+
+- From host, check if can ssh:
+```bash
+ssh hitran@localhost -p 2442
+```
+If it is the first time, need to add [localhost]:2442 into hosts
+
+## Setup GUI
+```ash
+su
+apk add xorg-server
+setup-xorg-base
+setup-desktop
+rc-update add dbus
+reboot
+```
+
 ## Setup Docker
 ```ash
-sudo apk add xorg-server xfce4 xfce4-terminal lightdm lightdm-gtk-greeter xf86-input-libinput elogind
-sudo setup-devd udev
-sudo rc-update add elogind
-sudo rc-update add lightdm
-sudo reboot
+su
+apk add docker docker-compose
+addgroup docker
+adduser hitran group docker
+apk add --update docker openrc
+rc-update add docker boot
+rc-service docker status
+apk add docker-cli-compose
 ```
 
-If after rebooting, the VM does not display a GUI:
-- Open virtualbox -> setting -> display:
-- Enable 3D Acceleration: ✅
 
-## Setup other services:
-```ashsudo apk update
-sudo apk add git
-sudo apk add firefox
+
+## Setup other services: git, make, build-base (for make), firefox
+```ash
+su
+apk add git
+apk add make
+apk add build-base
+apk add firefox
+```
+## Check services:
+```ash
+su
+docker --version
+docker-compose --version
+make --version
 ```
