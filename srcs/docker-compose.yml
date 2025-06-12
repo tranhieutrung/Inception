@@ -50,11 +50,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/hitran/data/mysql
+      device: ../data/mysql
       o: bind
   wordpress:
     driver: local
     driver_opts:
       type: none
-      device: /home/hitran/data/wordpress
+      device: ../data/wordpress
       o: bind

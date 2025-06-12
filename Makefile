@@ -2,7 +2,7 @@ all: up
 
 COMPOSE_FILE = ./srcs/docker-compose.yml
 ENV_FILE = ./srcs/.env
-DATA_DIR = /home/hitran/data
+DATA_DIR = ./data
 MYSQL_DIR = $(DATA_DIR)/mysql
 WORDPRESS_DIR = $(DATA_DIR)/wordpress
 
