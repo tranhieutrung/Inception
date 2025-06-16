@@ -1,37 +1,37 @@
+DATA_DIR 		= ./data
+MYSQL_DIR 		= $(DATA_DIR)/mysql
+WP_DIR 			= $(DATA_DIR)/wordpress
+
+COMPOSE_FILE 	= ./srcs/docker-compose.yml
+ENV_FILE 		= ./srcs/.env
+DC 				= docker-compose --env-file $(ENV_FILE) --file $(COMPOSE_FILE)
+
 all: up
 
-COMPOSE_FILE = ./srcs/docker-compose.yml
-ENV_FILE = ./srcs/.env
-DATA_DIR = ./data
-MYSQL_DIR = $(DATA_DIR)/mysql
-WORDPRESS_DIR = $(DATA_DIR)/wordpress
+mkdirs:
+	@mkdir -p $(MYSQL_DIR) $(WP_DIR)
 
-create_dirs:
-	@mkdir -p $(MYSQL_DIR) $(WORDPRESS_DIR)
-	@echo "Directories created or already exist."
-
-up : create_dirs
-	docker-compose --env-file $(ENV_FILE) -f $(COMPOSE_FILE) up
+up : mkdirs
+	$(DC) up
 
 down :
-	docker-compose --env-file $(ENV_FILE) -f $(COMPOSE_FILE) down
+	$(DC) down --remove-orphans
 
 stop :
-	docker-compose --env-file $(ENV_FILE) -f $(COMPOSE_FILE) stop
+	$(DC) stop
 
 start :
-	docker-compose --env-file $(ENV_FILE) -f $(COMPOSE_FILE) start
+	$(DC) start
 
-re : clean create_dirs
-	docker-compose --env-file $(ENV_FILE) -f $(COMPOSE_FILE) up --build
+re : clean mkdirs
+	$(DC) up --build
 
-status :
-	docker ps
+loggs:
+	$(DC) logs --follow
 
 clean :
-	docker-compose --env-file $(ENV_FILE) -f $(COMPOSE_FILE) down -v
+	$(DC) down --volumes --remove-orphans
 	docker volume prune -f
-	@echo "Removing data directories"
 	@sudo rm -rf $(DATA_DIR)
 
-.PHONY : all up down stop start status create_dirs
+.PHONY : all up down stop start re logs clean mkdirs
