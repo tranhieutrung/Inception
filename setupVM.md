@@ -90,13 +90,14 @@ reboot
 ## Setup Docker
 ```ash
 su
-apk add docker docker-compose
-addgroup docker
-adduser hitran group docker
-apk add --update docker openrc
+apk add docker docker-cli-compose
 rc-update add docker boot
+rc-service docker start
 rc-service docker status
-apk add docker-cli-compose
+
+addgroup docker
+adduser hitran docker
+
 ```
 
 
