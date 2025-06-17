@@ -6,7 +6,8 @@ COMPOSE_FILE 	= ./srcs/docker-compose.yml
 ENV_FILE 		= ./srcs/.env
 DC 				= docker-compose --env-file $(ENV_FILE) --file $(COMPOSE_FILE)
 
-all: up
+all: build
+run: up
 
 mkdirs:
 	@mkdir -p $(MYSQL_DIR) $(WP_DIR)
@@ -36,4 +37,4 @@ clean :
 	docker volume prune -f
 	@sudo rm -rf $(DATA_DIR)
 
-.PHONY : all up build down stop start re logs clean mkdirs
+.PHONY : all run up build down stop start re logs clean mkdirs
