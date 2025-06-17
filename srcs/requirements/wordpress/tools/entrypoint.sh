@@ -30,4 +30,5 @@ if [ ! -e .firstmount ]; then
 	touch .firstmount
 fi
 
+# Run in the foreground
 exec php-fpm83 -F

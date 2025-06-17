@@ -23,4 +23,5 @@ chmod 600 /etc/nginx/ssl/cert.key
 # Certificate readable by everyone (644)
 chmod 644 /etc/nginx/ssl/cert.crt
 
+# Run in the foreground: override the default config and prevent daemonizing
 exec nginx -g "daemon off;"

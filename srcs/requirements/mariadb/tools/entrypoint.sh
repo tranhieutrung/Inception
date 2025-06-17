@@ -16,4 +16,5 @@ mysqld --user=mysql --bootstrap <<EOF
 	FLUSH PRIVILEGES;
 EOF
 
-exec mysqld_safe --user=mysql
+# Run in the foreground
+exec mysqld --user=mysql --console
