@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# create a SSL (self-signed certificate)
+# openssl req: create a SSL (Secure Sockets Layer certificate)
 #	-x509: create X.509 certificate.
 #	-days 365: valid for 365 days.
 #	-newkey rsa:2048: generate a new 2048-bit RSA key.
