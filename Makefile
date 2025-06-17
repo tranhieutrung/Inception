@@ -14,6 +14,9 @@ mkdirs:
 up : mkdirs
 	$(DC) up
 
+build: mkdirs
+	$(DC) up --build
+
 down :
 	$(DC) down --remove-orphans
 
@@ -23,8 +26,7 @@ stop :
 start :
 	$(DC) start
 
-re : clean mkdirs
-	$(DC) up --build
+re : clean build
 
 loggs:
 	$(DC) logs --follow
@@ -34,4 +36,4 @@ clean :
 	docker volume prune -f
 	@sudo rm -rf $(DATA_DIR)
 
-.PHONY : all up down stop start re logs clean mkdirs
+.PHONY : all up build down stop start re logs clean mkdirs
