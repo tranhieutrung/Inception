@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-mysqld --user=mysql --bootstrap <<EOF
+mariadbd --user=mysql --bootstrap <<EOF
 	USE mysql;
 	FLUSH PRIVILEGES;
 	
@@ -17,4 +17,4 @@ mysqld --user=mysql --bootstrap <<EOF
 EOF
 
 # Run in the foreground
-exec mysqld --user=mysql --console
+exec mariadbd --user=mysql --console
