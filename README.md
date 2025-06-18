@@ -35,9 +35,9 @@ The main objective is to gain hands-on experience with system administration too
 🚀 How to Do and Run This Project
 The project can be broken down into 3 main phases:
 
-1️⃣ VM Setup: build and configure a Virtual Machine (Alpine Linux) [**Setup VM**](https://github.com/tranhieutrung/Inception/setupVM.md)
+1️⃣ VM Setup: build and configure a Virtual Machine (Alpine Linux) [**Setup VM**](https://github.com/tranhieutrung/Inception/blob/main/setupVM.md)
 
-2️⃣ Build Docker Infrastructure: Create a Git repository and structure the project as required by the subject [**Setup Docker**](https://github.com/tranhieutrung/Inception/setup_docker.md)
+2️⃣ Build Docker Infrastructure: Create a Git repository and structure the project as required by the subject [**Setup Docker**](https://github.com/tranhieutrung/Inception/blob/main/setup_docker.md)
 
-3️⃣ Evaluation & Testing: [**Evaluation**](https://github.com/tranhieutrung/Inception/evaluation.md)
+3️⃣ Evaluation & Testing: [**Evaluation**](https://github.com/tranhieutrung/Inception/blob/main/evaluation.md)
 
