@@ -19,5 +19,5 @@
 		make
 		```
 	+ Open browser: open hitran.42.fr then explore the wordpress page.
-	+ Explore mariadb: 
+	+ Explore mariadb: [**Mariadb commands**](https://github.com/tranhieutrung/Inception/blob/main/commands.md) 
 	
