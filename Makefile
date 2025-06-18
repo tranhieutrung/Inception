@@ -4,7 +4,7 @@ WP_DIR 			= $(DATA_DIR)/wordpress
 
 COMPOSE_FILE 	= ./srcs/docker-compose.yml
 ENV_FILE 		= ./srcs/.env
-DC 				= docker-compose --env-file $(ENV_FILE) --file $(COMPOSE_FILE)
+DC 				= docker compose --env-file $(ENV_FILE) --file $(COMPOSE_FILE)
 
 all: up
 
