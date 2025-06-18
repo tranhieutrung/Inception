@@ -1,4 +1,4 @@
-DATA_DIR 		= ./data
+DATA_DIR 		= $(HOME)/data
 MYSQL_DIR 		= $(DATA_DIR)/mysql
 WP_DIR 			= $(DATA_DIR)/wordpress
 
@@ -23,7 +23,7 @@ stop:
 start:
 	$(DC) start
 
-re: clean all
+re: fclean all
 
 logs:
 	$(DC) logs --follow
@@ -32,8 +32,6 @@ clean: down
 	@sudo rm -rf $(DATA_DIR)
 
 fclean: clean
-	docker volume prune -f
-	docker network prune -f
-	docker image prune -a -f
+	docker system prune --all --volumes --force
 
 .PHONY : all up down stop start re logs clean fclean mkdirs

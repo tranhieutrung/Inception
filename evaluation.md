@@ -19,4 +19,5 @@
 		make
 		```
 	+ Open browser: open hitran.42.fr then explore the wordpress page.
+	+ Explore mariadb: 
 	

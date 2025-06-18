@@ -4,7 +4,7 @@ services:
     container_name: mariadb
     env_file:
       - .env
-    image: mariadb:hitran
+    image: mariadb:${NAME}
     networks:
       - inception
     restart: always
@@ -19,7 +19,7 @@ services:
       - mariadb
     env_file:
       - .env
-    image: nginx:hitran
+    image: nginx:${NAME}
     networks:
       - inception
     restart: always
@@ -35,7 +35,7 @@ services:
       - mariadb
     env_file:
       - .env
-    image: wordpress:hitran
+    image: wordpress:${NAME}
     networks:
       - inception
     restart: always
@@ -50,11 +50,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ../data/mysql
+      device: ${DATA_DIR}/mysql
       o: bind
   wordpress:
     driver: local
     driver_opts:
       type: none
-      device: ../data/wordpress
+      device: ${DATA_DIR}/wordpress
       o: bind
