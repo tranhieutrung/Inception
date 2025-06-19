@@ -1,4 +1,4 @@
-DATA_DIR 		= $(HOME)/data
+DATA_DIR 		= /home/hitran/data
 MYSQL_DIR 		= $(DATA_DIR)/mysql
 WP_DIR 			= $(DATA_DIR)/wordpress
 
